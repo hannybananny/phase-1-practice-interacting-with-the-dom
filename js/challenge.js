@@ -1,7 +1,44 @@
 let timeVariable = setInterval(setTimer, 1000)
 const counter = document.getElementById('counter')
-let numberArr = []
+const numberArr = []
 
+document.addEventListener("DOMContentLoaded", () => {
+    let showLikes = document.querySelector('.likes')
+    const heartBtn = document.getElementById('heart')
+    let count = 1
+               
+    heartBtn.addEventListener('click', e => {
+        let number = parseInt(counter.innerText) 
+        if (numberArr.includes(number)){
+            count = 1
+            let newLi = document.getElementById(`${number}`)
+            newLi.innerText = `${number}` + ' has been liked ' + `${count+1}` + ' times'
+            
+        }
+        else {
+            numberArr.push(number)
+            let secondVariable = counter.textContent
+            let likesLi = document.createElement('li')
+            likesLi.setAttribute("id", secondVariable);
+            likesLi.innerHTML = secondVariable + ' has been liked 1 time'
+            showLikes.appendChild(likesLi)
+        
+        }
+    })
+    const btn = document.getElementById('pause')
+    btn.addEventListener('click', e => {
+        
+        if(btn.textContent === 'resume'){
+            btn.innerHTML = 'pause'
+            setInterval(setTimer, 1000)
+        }
+        else {
+            btn.innerHTML = 'resume'
+            clearInterval(timeVariable);
+            //only pauses once
+        }
+    })
+})
 
 function setTimer(){
     counter.innerText = parseInt(counter.innerText) +1
@@ -26,52 +63,6 @@ function decrementTime(){
 }
 
 decrementTime()
-
-function likeNumber(){
-    let showLikes = document.querySelector('.likes')
-    const heartBtn = document.getElementById('heart')
-    let count = 1
-    let number = counter.innerText               
-    heartBtn.addEventListener('click', e => {
-        let secondVariable = counter.textContent
-        console.log(numberArr)
-        const likesLi = document.createElement('li')
-        likesLi.setAttribute("id", `${secondVariable}`);
-
-        if (numberArr[number] = document.getElementById(`${secondVariable}`)) {
-            numberArr[number] = count++
-        }
-        else {
-            numberArr.number = count
-        }
-
-        likesLi.innerHTML = secondVariable + ' has been liked ' + ' times'
-        showLikes.appendChild(likesLi)
-        
-        //take number counter currently is
-        //compare it to strings that have already been printed on DOM
-    })
-}
-
-likeNumber()
-
-function pauseCounter(){
-    const btn = document.getElementById('pause')
-    btn.addEventListener('click', e => {
-        
-        if(btn.textContent === 'resume'){
-            btn.innerHTML = 'pause'
-            setInterval(setTimer, 1000)
-        }
-        else {
-            btn.innerHTML = 'resume'
-            clearInterval(timeVariable);
-            //only pauses once
-        }
-    })
-}
-
-pauseCounter()
 
 let form = document.querySelector('form')
 form.addEventListener('submit', e => {
