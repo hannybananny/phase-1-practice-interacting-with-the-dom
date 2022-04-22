@@ -1,5 +1,6 @@
 let timeVariable = setInterval(setTimer, 1000)
 const counter = document.getElementById('counter')
+let numberArr = []
 
 
 function setTimer(){
@@ -11,7 +12,6 @@ function incrementTime(){
     plusSign = document.getElementById('plus')
     plusSign.addEventListener('click', () => {
        counter.innerText = parseInt(counter.innerText) +1
-      // counter.innerHTML = countInt + 1
     })
 }
 
@@ -28,26 +28,28 @@ function decrementTime(){
 decrementTime()
 
 function likeNumber(){
-    let numberOfLikes = {}
     let showLikes = document.querySelector('.likes')
     const heartBtn = document.getElementById('heart')
-    let number = counter.innerText
     let count = 1
-    numberOfLikes.number = count++               
+    let number = counter.innerText               
     heartBtn.addEventListener('click', e => {
-        console.log(numberOfLikes)
-        const likesLi = document.createElement('li')
         let secondVariable = counter.textContent
-        if (numberOfLikes[number]) {
-            numberOfLikes[number] = count + count
+        console.log(numberArr)
+        const likesLi = document.createElement('li')
+        likesLi.setAttribute("id", `${secondVariable}`);
+
+        if (numberArr[number] = document.getElementById(`${secondVariable}`)) {
+            numberArr[number] = count++
         }
         else {
-            numberOfLikes[number] = 1
+            numberArr.number = count
         }
-        likesLi.innerHTML = secondVariable + ' has been liked ' + `${numberOfLikes[number]}` + ' times'
+
+        likesLi.innerHTML = secondVariable + ' has been liked ' + ' times'
         showLikes.appendChild(likesLi)
-        //need to access number of clicks per second
         
+        //take number counter currently is
+        //compare it to strings that have already been printed on DOM
     })
 }
 
@@ -56,17 +58,15 @@ likeNumber()
 function pauseCounter(){
     const btn = document.getElementById('pause')
     btn.addEventListener('click', e => {
-        //if paused, resume
+        
         if(btn.textContent === 'resume'){
             btn.innerHTML = 'pause'
-            setInterval(setTimer(), 1000)
-            //only adds one second
-            
+            setInterval(setTimer, 1000)
         }
-        //if running, pause 
         else {
             btn.innerHTML = 'resume'
             clearInterval(timeVariable);
+            //only pauses once
         }
     })
 }
