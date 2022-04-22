@@ -5,22 +5,21 @@ const numberArr = []
 document.addEventListener("DOMContentLoaded", () => {
     let showLikes = document.querySelector('.likes')
     const heartBtn = document.getElementById('heart')
-    let count = 1
                
     heartBtn.addEventListener('click', e => {
-        let number = parseInt(counter.innerText) 
+        let number = parseInt(counter.innerText)
+        let count = 1
         if (numberArr.includes(number)){
-            count = 1
             let newLi = document.getElementById(`${number}`)
-            newLi.innerText = `${number}` + ' has been liked ' + `${count+1}` + ' times'
-            
-        }
-        else {
+            newLi.innerText = `${number}` + ' has been liked ' + `${count + 1}` + ' times'
+            }
+        
+            else {
             numberArr.push(number)
             let secondVariable = counter.textContent
             let likesLi = document.createElement('li')
             likesLi.setAttribute("id", secondVariable);
-            likesLi.innerHTML = secondVariable + ' has been liked 1 time'
+            likesLi.innerHTML = secondVariable + ' has been liked ' + `${count}` + ' time'
             showLikes.appendChild(likesLi)
         
         }
