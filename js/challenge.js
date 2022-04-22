@@ -1,5 +1,6 @@
 let timeVariable = setInterval(setTimer, 1000)
 let totalSeconds = 0
+const counter = document.getElementById('counter')
 
 function setTimer(){
     totalSeconds++
@@ -9,7 +10,8 @@ function setTimer(){
 function incrementTime(){
     plusSign = document.getElementById('plus')
     plusSign.addEventListener('click', e => {
-        (setTimer() +1)
+       let countInt = parseInt(counter.textContent) 
+       counter.innerHTML = countInt + 1
     })
 }
 
@@ -18,8 +20,8 @@ incrementTime()
 function decrementTime(){
     minusSign = document.getElementById('minus')
     minusSign.addEventListener('click', e => {
-        (setTimer() -1)
-    //this is adding on second
+        let countInt = parseInt(counter.textContent) 
+        counter.innerHTML = countInt -1
     })
 }
 
@@ -27,14 +29,15 @@ decrementTime()
 
 function likeNumber(){
     const heartBtn = document.getElementById('heart')
+    let countClicks = 0
     heartBtn.addEventListener('click', e => {
+        countClicks += 1
         let secondVariable = document.getElementById('counter').textContent
         const list = document.createElement('li')
         list.innerHTML = secondVariable + ' has been liked' + ' times'
         document.querySelector('ul').appendChild(list)
         //need to access number of clicks per second
-        // let count = 0
-        //
+        
     })
 }
 
@@ -54,7 +57,6 @@ function pauseCounter(){
         else {
             btn.innerHTML = 'resume'
             clearInterval(timeVariable);
-            myInterval = -1
         }
     })
 }
