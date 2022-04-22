@@ -1,17 +1,17 @@
 let timeVariable = setInterval(setTimer, 1000)
-let totalSeconds = 0
 const counter = document.getElementById('counter')
 
+
 function setTimer(){
-    totalSeconds++
-    document.getElementById('counter').innerHTML = totalSeconds
+    counter.innerText = parseInt(counter.innerText) +1
 }
+
 
 function incrementTime(){
     plusSign = document.getElementById('plus')
-    plusSign.addEventListener('click', e => {
-       let countInt = parseInt(counter.textContent) 
-       counter.innerHTML = countInt + 1
+    plusSign.addEventListener('click', () => {
+       counter.innerText = parseInt(counter.innerText) +1
+      // counter.innerHTML = countInt + 1
     })
 }
 
@@ -20,22 +20,30 @@ incrementTime()
 function decrementTime(){
     minusSign = document.getElementById('minus')
     minusSign.addEventListener('click', e => {
-        let countInt = parseInt(counter.textContent) 
-        counter.innerHTML = countInt -1
+        counter.innerText = parseInt(counter.innerText) -1
+
     })
 }
 
 decrementTime()
 
 function likeNumber(){
+    let numberOfLikes = {}
+    let showLikes = document.querySelector('.likes')
     const heartBtn = document.getElementById('heart')
-    let countClicks = 0
+    let number = counter.innerText
+    let count = 0               
     heartBtn.addEventListener('click', e => {
-        countClicks += 1
-        let secondVariable = document.getElementById('counter').textContent
-        const list = document.createElement('li')
-        list.innerHTML = secondVariable + ' has been liked' + ' times'
-        document.querySelector('ul').appendChild(list)
+        const likesLi = document.createElement('li')
+        let secondVariable = counter.textContent
+        if (numberOfLikes[number]) {
+            numberOfLikes[number] = count++
+        }
+        else {
+            numberOfLikes[number] = 1
+        }
+        likesLi.innerHTML = secondVariable + ' has been liked ' + `${numberOfLikes[number]}` + ' times'
+        showLikes.appendChild(likesLi)
         //need to access number of clicks per second
         
     })
