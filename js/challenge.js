@@ -32,12 +32,14 @@ function likeNumber(){
     let showLikes = document.querySelector('.likes')
     const heartBtn = document.getElementById('heart')
     let number = counter.innerText
-    let count = 0               
+    let count = 1
+    numberOfLikes.number = count++               
     heartBtn.addEventListener('click', e => {
+        console.log(numberOfLikes)
         const likesLi = document.createElement('li')
         let secondVariable = counter.textContent
         if (numberOfLikes[number]) {
-            numberOfLikes[number] = count++
+            numberOfLikes[number] = count + count
         }
         else {
             numberOfLikes[number] = 1
