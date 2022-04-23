@@ -35,7 +35,6 @@ document.addEventListener("DOMContentLoaded", () => {
         else {
             btn.innerHTML = 'resume'
             clearInterval(timeVariable);
-            //only pauses once
         }
     })
 })
