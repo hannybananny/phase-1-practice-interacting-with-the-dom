@@ -1,6 +1,6 @@
 let timeVariable = setInterval(setTimer, 1000)
 const counter = document.getElementById('counter')
-const numberArr = []
+const numberObj = {}
 
 document.addEventListener("DOMContentLoaded", () => {
     let showLikes = document.querySelector('.likes')
@@ -8,29 +8,31 @@ document.addEventListener("DOMContentLoaded", () => {
                
     heartBtn.addEventListener('click', e => {
         let number = parseInt(counter.innerText)
-        let count = 1
-
-        if (numberArr.includes(number)){
+        count = 1
+        if (numberObj[number] === number){
+            numberObj[number] = count++
             let newLi = document.getElementById(`${number}`)
-            newLi.innerText = `${number}` + ' has been liked ' + `${count + 1}` + ' times'
+            newLi.innerText = `${number}` + ' has been liked ' + `${numberObj[number]}` + ' times'
             }
-        
+        //number as key in object
+        //number is key, value is how many times like
             else {
-            numberArr.push(number)
+            numberObj[number] = count
             let secondVariable = counter.textContent
             let likesLi = document.createElement('li')
             likesLi.setAttribute("id", secondVariable);
-            likesLi.innerHTML = secondVariable + ' has been liked ' + `${count}` + ' time'
+            likesLi.innerHTML = secondVariable + ' has been liked ' + `${numberObj[number]}` + ' time'
             showLikes.appendChild(likesLi)
         
         }
     })
+    
     const btn = document.getElementById('pause')
     btn.addEventListener('click', e => {
         
         if(btn.textContent === 'resume'){
             btn.innerHTML = 'pause'
-            setInterval(setTimer, 1000)
+            timeVariable = setInterval(setTimer, 1000)
         }
         else {
             btn.innerHTML = 'resume'
