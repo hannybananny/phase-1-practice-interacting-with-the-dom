@@ -8,17 +8,14 @@ document.addEventListener("DOMContentLoaded", () => {
                
     heartBtn.addEventListener('click', e => {
         let number = parseInt(counter.innerText)
-        let click = 1
-        if (number === numberObj[number]){
-            numberObj[number] = click++
+        if (number in numberObj){
+            numberObj[number] = numberObj[number] + 1 
             let newLi = document.getElementById(`${number}`)
             newLi.innerText = `${number}` + ' has been liked ' + `${numberObj[number]}` + ' times'
             }
-        //number as key in object
-        //number is key, value is how many times like
+        
             else {
-            numberObj[number] = click
-            console.log(numberObj)
+            numberObj[number] = 1
             let secondVariable = counter.textContent
             let likesLi = document.createElement('li')
             likesLi.setAttribute("id", secondVariable);
