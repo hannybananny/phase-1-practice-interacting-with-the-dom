@@ -9,6 +9,7 @@ document.addEventListener("DOMContentLoaded", () => {
     heartBtn.addEventListener('click', e => {
         let number = parseInt(counter.innerText)
         let count = 1
+
         if (numberArr.includes(number)){
             let newLi = document.getElementById(`${number}`)
             newLi.innerText = `${number}` + ' has been liked ' + `${count + 1}` + ' times'
